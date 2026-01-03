@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .article-text {
+    @apply text-gray-800 dark:text-slate-300;
+  }
+}
