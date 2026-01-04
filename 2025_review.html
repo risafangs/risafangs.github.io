@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stuff I made in 2025</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="styles/custom.css" rel="stylesheet">
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -13,227 +12,291 @@
                 extend: {
                     colors: {
                         primary: {
-                            light: 'oklch(81.1% 0.111 293.571)',  // light violet
-                            dark: 'oklch(43.2% 0.232 292.759)',   // dark violet for dark mode
+                            light: 'oklch(81.1% 0.111 293.571)',
+                            dark: 'oklch(43.2% 0.232 292.759)',
                         }
                     }
                 }
             }
         }
     </script>
+    <style type="text/tailwindcss">
+        @layer components {
+            .link {
+                @apply text-blue-600 hover:underline hover:text-blue-800 visited:text-purple-600 
+                       dark:text-blue-400 dark:hover:text-blue-300 dark:visited:text-purple-400 
+                       transition-colors duration-200;
+            }
+        }
+    </style>
 </head>
 
-<body class="min-h-screen bg-primary-light dark:bg-primary-dark transition-colors duration-200">
+<body id="page-body" class="min-h-screen bg-primary-light dark:bg-primary-dark transition-colors duration-200">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h1 class="text-4xl md:text-6xl font-bold mb-4">
             <span class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent">
                 Stuff I made in 2025
             </span>
         </h1>
-        <div class="w-24 h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400"></div>
-        </div>
-
+      
+        <div class="w-48 h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 mb-8"></div>
         <div class="flex flex-col lg:flex-row gap-8 max-w-7xl mx-auto">
-            <!-- Text Content -->
             <div class="lg:w-2/3 bg-white dark:bg-violet-900 rounded-lg shadow-lg p-6 md:p-8 lg:p-10 text-gray-800 dark:text-slate-300">
-                <article class="prose dark:prose-invert max-w-none article-text">
+                <article class="prose dark:prose-invert max-w-none">
                     <p class="text-lg leading-relaxed">
                         I've been inspired by the reflective spirit of year-end to look back at all the things I made in 2025. 
                         Some of them don't even feel like they were from this year anymore — it's probably a good representation
                         of how weird and long and generally overwhelming it has been. (I am a human and I use em dashes.)
                         <br><br>
                         These are loosely organized chronologically by completion.
-                        <br><br>
-                        <b>January</b>
-                        <br>
+                    </p>
+
+                    <!-- January -->
+                    <h2 id="january" class="text-2xl font-bold mt-12 mb-4">January</h2>
+                    <div class="mb-6">
                         <a href="images/projects/tomato_painting.jpg" class="block w-fit">
                             <img src="images/projects/thumbnails/thumb_tomato_painting.jpg" 
-                            alt="Acrylic Painting of Man with Tomatoes" 
-                            class="w-full max-w-md rounded-lg shadow-md hover:opacity-90 transition-opacity">
+                                alt="Acrylic Painting of Man with Tomatoes" 
+                                class="w-full max-w-md rounded-lg shadow-md hover:opacity-90 transition-opacity">
                         </a>
-                        <br>
-                        I started this painting in late October 2024 and finished it in January 2025, just in time for the intended recipient's birthday. Apparently he forgot that
-                        he had inquired about commissioning a painting, but it took me a few months to think of a subject that both matched his prompt ("Tomato art, no adult themes") and
-                        was exciting for me to work on. Tomatoes by themselves were not quite thrilling enough on their own. I'm particularly pleased with the inexplicable extra hands (for
-                        holding more tomatoes) in the era of weird inexplicable AI-generated art.
-                        <br><br>
-                        I took my first acrylic painting class at <a href="https://lillstreet.com/">Lillstreet Art Center</a> in 2023, and I loved the end products, but it. is. so. time. consuming. 
-                        I'd love to paint more, but I need more hours in the day, and/or much smaller canvasses.
-                        <br><br>
-                        <b>February</b>
-                        <br>
+                        <p class="mt-4">
+                            I started this painting in late October 2024 and finished it in January 2025, just in time for the intended recipient's birthday. 
+                            I took my first acrylic painting class at <a href="https://lillstreet.com/" class="link">Lillstreet Art Center</a> in 2023, and I loved the end products, 
+                            but it. is. so. time. consuming. I'd love to paint more, but I need more hours in the day, and/or much smaller canvasses.
+                        </p>
+                    </div>
+
+                    <!-- February -->
+                    <h2 id="february" class="text-2xl font-bold mt-12 mb-4">February</h2>
+                    <div class="mb-6">
                         <a href="images/projects/kiwi.jpg" class="block w-fit">
                             <img src="images/projects/thumbnails/thumb_kiwi.jpg" 
-                            alt="Felted Kiwi Bird with Kiwi Fruit" 
-                            class="w-full max-w-md rounded-lg shadow-md hover:opacity-90 transition-opacity">
+                                alt="Felted Kiwi Bird with Kiwi Fruit" 
+                                class="w-full max-w-md rounded-lg shadow-md hover:opacity-90 transition-opacity">
                         </a>
-                        <br>
-                        I'm a sucker for a crafting kit, and this one was a palate cleanser after I attempted an impossible crochet kit earlier in the year. I have a 
-                        backlog of these that I bought in Japan – the felting kits in particular are so satisfying and cute! I don't think this took more than a day or two.
-                        <br><br>
-                        <b>March</b>
-                        <br>
+                        <p class="mt-4">
+                            I'm a sucker for a crafting kit!!! This one was a palate cleanser after I attempted an impossible crochet kit earlier in the year. 
+                            I have a backlog of these that I bought in Japan – the felting kits in particular are so satisfying and cute! 
+                            I don't think this took more than a day or two.
+                        </p>
+                    </div>
+
+                    <!-- March -->
+                    <h2 id="march" class="text-2xl font-bold mt-12 mb-4">March</h2>
+                    <div class="mb-6">
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
                             <a href="images/projects/molded_purse1.jpg" class="block w-full">
                                 <img src="images/projects/thumbnails/thumb_molded_purse1.jpg" 
-                                alt="Molded Leather Purse Dyed Body and Straps" 
-                                class="w-full h-48 object-cover rounded-lg shadow-md hover:opacity-90 transition-opacity">
+                                    alt="Molded Leather Purse" 
+                                    class="w-full h-48 object-cover rounded-lg shadow-md hover:opacity-90 transition-opacity">
                             </a>
                             <a href="images/projects/molded_purse2.jpg" class="block w-full">
                                 <img src="images/projects/thumbnails/thumb_molded_purse2.jpg" 
-                                alt="Molded Leather Purse Body + Top Flap, Ear Details" 
-                                class="w-full h-48 object-cover rounded-lg shadow-md hover:opacity-90 transition-opacity">
+                                    alt="Molded Leather Purse Detail" 
+                                    class="w-full h-48 object-cover rounded-lg shadow-md hover:opacity-90 transition-opacity">
                             </a>
                             <a href="images/projects/molded_purse3.jpg" class="block w-full">
                                 <img src="images/projects/thumbnails/thumb_molded_purse3.jpg" 
-                                alt="Molded Leather Purse Assembled" 
-                                class="w-full h-48 object-cover rounded-lg shadow-md hover:opacity-90 transition-opacity">
+                                    alt="Molded Leather Purse Side View" 
+                                    class="w-full h-48 object-cover rounded-lg shadow-md hover:opacity-90 transition-opacity">
                             </a>
                             <a href="images/projects/molded_purse4.jpg" class="block w-full">
-                            <img src="images/projects/thumbnails/thumb_molded_purse4.jpg" 
-                                 alt="Molded Leather Purse Completed" 
-                                 class="w-full h-48 object-cover rounded-lg shadow-md hover:opacity-90 transition-opacity">
-                        </a>
+                                <img src="images/projects/thumbnails/thumb_molded_purse4.jpg" 
+                                    alt="Molded Leather Purse with Moon Charm" 
+                                    class="w-full h-48 object-cover rounded-lg shadow-md hover:opacity-90 transition-opacity">
+                            </a>
+                        </div>
+                        <p class="mt-4">
+                            My friend and I went to a beginner workshop at the <a href="https://chicagoschoolofshoemaking.com/" class="link">Chicago School of Shoemaking and Leather Arts</a> 
+                            and immediately wanted to do more, so I enrolled in the Molded Vegetable-tanned Leather class and made this bag. This one was an ~8 hr class in 4 total sessions
+                            that continually felt like a race against time. You also have to make so many important design decisions right away, like choosing shape, colors of each element, etc.
+                            I was very stressed, but I love what I made. I bought the moon-shaped stone later on especially to cover up the rivet, and it adds so much!
+                        </p>
                     </div>
-                    My friend and I went to a beginner workshop at the <a href="https://chicagoschoolofshoemaking.com/">Chicago School of Shoemaking and Leather Arts</a> 
-                    and immediately wanted to do more, so I enrolled in the Molded Vegetable-tanned Leather class and made this bag. This one was an ~8 hr class in 4 total sessions
-                    that continually felt like a race against time. You also have to make so many important design decisions right away, like choosing shape, colors of each element, etc.
-                    I was very stressed, but I love what I made. I bought the moon-shaped stone later on especially to cover up the rivet, and it adds so much!
-                    <br><br>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 mb-4">
-                    <a href="images/projects/postcards1.jpg" class="block w-fit">
-                            <img src="images/projects/thumbnails/thumb_postcards1.jpg" 
-                            alt="Postcards Artwork" 
-                            class="w-full max-w-md rounded-lg shadow-md hover:opacity-90 transition-opacity">
-                        </a>
-                    <a href="images/projects/postcards2.jpg" class="block w-fit">
-                            <img src="images/projects/thumbnails/thumb_postcards2.jpg" 
-                            alt="Postcards Artwork" 
-                            class="w-full max-w-md rounded-lg shadow-md hover:opacity-90 transition-opacity">
-                        </a>
+
+                    <div class="mb-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                            <a href="images/projects/postcards1.jpg" class="block w-full">
+                                <img src="images/projects/thumbnails/thumb_postcards1.jpg" 
+                                    alt="Handmade Postcards 1" 
+                                    class="w-full h-48 object-cover rounded-lg shadow-md hover:opacity-90 transition-opacity">
+                            </a>
+                            <a href="images/projects/postcards2.jpg" class="block w-full">
+                                <img src="images/projects/thumbnails/thumb_postcards2.jpg" 
+                                    alt="Handmade Postcards 2" 
+                                    class="w-full h-48 object-cover rounded-lg shadow-md hover:opacity-90 transition-opacity">
+                            </a>
+                        </div>
+                        <p class="mt-4">
+                            I thought it was a good idea to buy blank postcards because I didn't like the ones I was seeing online, but this took a ton of effort.
+                            I made these for a letter writing campaign in advance of the Wisconsin Supreme Court election in the spring, and some of them turned 
+                            pretty cute! But yeah, next time I'm printing something.
+                        </p>
                     </div>
-                    I thought it was a good idea to buy blank postcards because I didn't like the ones I was seeing online, but this took a ton of effort.
-                    I made these for a letter writing campaign in advance of the Wisconsin Supreme Court election in the spring, and some of them turned 
-                    pretty cute! But yeah, next time I'm printing something.
-                    <br><br>
-                    <b>April</b>
-                    <br>
-                    <a href="images/projects/suzie.jpg" class="block w-fit">
+
+                    <!-- April -->
+                    <h2 id="april" class="text-2xl font-bold mt-12 mb-4">April</h2>
+                    <div class="mb-6">
+                        <a href="images/projects/suzie.jpg" class="block w-fit">
                             <img src="images/projects/thumbnails/thumb_suzie.jpg" 
-                            alt="Sketch of Suzie Toot" 
-                            class="w-full max-w-md rounded-lg shadow-md hover:opacity-90 transition-opacity">
+                                alt="Suzie Toot Sketch" 
+                                class="w-full max-w-md rounded-lg shadow-md hover:opacity-90 transition-opacity">
                         </a>
-                    <br>
-                    In April, RuPaul's Drag Race Season 17 ended, but more notably, contestant Suzie Toot debuted her cherry bomb wig on stage and ate at
-                    the Lalaparuza challenge. I love this look and it definitely inspired some art. I'm including this sketch only because it was such a notable 
-                    moment in my year! There's more Suzie stuff in my mini-drawings collection at the end.
-                    <br><br>
-                    <b>May</b>
-                    <br>
-                    <a href="images/projects/racoon_doll.jpg" class="block w-fit">
+                        <p class="mt-4">
+                            In April, RuPaul's Drag Race Season 17 ended, but more notably, contestant Suzie Toot debuted her cherry bomb wig on stage and ate at
+                            the Lalaparuza challenge. I love this look and it definitely inspired some art. I'm including this sketch only because it was such a notable 
+                            moment in my year! There's more Suzie stuff in my mini-drawings collection at the end.
+                        </p>
+                    </div>
+
+                    <!-- May -->
+                    <h2 id="may" class="text-2xl font-bold mt-12 mb-4">May</h2>
+                    <div class="mb-6">
+                        <a href="images/projects/racoon_doll.jpg" class="block w-fit">
                             <img src="images/projects/thumbnails/thumb_racoon_doll.jpg" 
-                            alt="Embroidered Racoon Doll" 
-                            class="w-full max-w-md rounded-lg shadow-md hover:opacity-90 transition-opacity">
+                                alt="Embroidered Raccoon Doll" 
+                                class="w-full max-w-md rounded-lg shadow-md hover:opacity-90 transition-opacity">
                         </a>
-                    <br>
-                    This was <a href="https://kirikipress.com/products/raccoon-embroidery-kit">another kit</a>. I'd never done embroidery before, and I chose
-                    a Level 3 project 😅 but it turned out okay. This just took a really, really long time. Probably months??
-                    <br><br>
-                    <b>July</b>
-                    <br>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 mb-4">
-                    <a href="images/projects/camopouch1.jpg" class="block w-fit">
-                            <img src="images/projects/thumbnails/thumb_camopouch1.jpg" 
-                            alt="Camo Pouch Pieces" 
-                            class="w-full max-w-md rounded-lg shadow-md hover:opacity-90 transition-opacity">
-                        </a>
-                    <a href="images/projects/camopouch2.jpg" class="block w-fit">
-                            <img src="images/projects/thumbnails/thumb_camopouch2.jpg" 
-                            alt="Camo Pouch" 
-                            class="w-full max-w-md rounded-lg shadow-md hover:opacity-90 transition-opacity">
-                        </a>
+                        <p class="mt-4">
+                            This was <a href="https://kirikipress.com/products/raccoon-embroidery-kit" class="link">another kit</a>. I'd never done embroidery before, and I chose
+                            a Level 3 project 😅 but it turned out okay. This just took a really, really long time. Probably months??
+                        </p>
                     </div>
-                    After the molded leather class, I wanted to make more bags!!! The instructor told me to take an industrial sewing machine class next, 
-                    so that's what this pouch is from. I think the camo and pink zipper look so cute together.
-                    <br><br>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 mb-4">
-                    <a href="images/projects/kokedama1.jpg" class="block w-fit">
-                            <img src="images/projects/thumbnails/thumb_kokedama1.jpg" 
-                            alt="Plant and moss" 
-                            class="w-full max-w-md rounded-lg shadow-md hover:opacity-90 transition-opacity">
-                        </a>
-                    <a href="images/projects/kokedama2.jpg" class="block w-fit">
-                            <img src="images/projects/thumbnails/thumb_kokedama2.jpg" 
-                            alt="Kokedama" 
-                            class="w-full max-w-md rounded-lg shadow-md hover:opacity-90 transition-opacity">
-                        </a>
+
+                    <!-- July -->
+                    <h2 id="july" class="text-2xl font-bold mt-12 mb-4">July</h2>
+                    <div class="mb-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                            <a href="images/projects/camopouch1.jpg" class="block w-full">
+                                <img src="images/projects/thumbnails/thumb_camopouch1.jpg" 
+                                    alt="Camo Pouch In Progress" 
+                                    class="w-full h-48 object-cover rounded-lg shadow-md hover:opacity-90 transition-opacity">
+                            </a>
+                            <a href="images/projects/camopouch2.jpg" class="block w-full">
+                                <img src="images/projects/thumbnails/thumb_camopouch2.jpg" 
+                                    alt="Finished Camo Pouch" 
+                                    class="w-full h-48 object-cover rounded-lg shadow-md hover:opacity-90 transition-opacity">
+                            </a>
+                        </div>
+                        <p class="mt-4">
+                            After the molded leather class, I wanted to make more bags!!! The instructor told me to take an industrial sewing machine class next, 
+                            so that's what this pouch is from. I think the camo and pink zipper look so cute together.
+                        </p>
                     </div>
-                    I'm terrible with plants. Kokedama seemed like they would be low maintenance/fairly idiot proof, so I had high hopes for this workshop being offered 
-                    by the <a href="https://uncommonplantguy.com/">Uncommon Plant Guy</a>, and six months later (Jan 2026), my kokedama is still thriving!!! I think this 
-                    is a hoya plant. 
-                    <br><br>
-                    <b>October</b>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 mb-4">
-                    <a href="images/projects/navybag1.jpg" class="block w-fit">
-                            <img src="images/projects/thumbnails/thumb_navybag1.jpg" 
-                            alt="Leather Bag Pieces" 
-                            class="w-full max-w-md rounded-lg shadow-md hover:opacity-90 transition-opacity">
-                        </a>
-                    <a href="images/projects/navybag2.jpg" class="block w-fit">
-                            <img src="images/projects/thumbnails/thumb_navybag2.jpg" 
-                            alt="Finished Leather Bag" 
-                            class="w-full max-w-md rounded-lg shadow-md hover:opacity-90 transition-opacity">
-                        </a>
+
+                    <div class="mb-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                            <a href="images/projects/kokedama1.jpg" class="block w-full">
+                                <img src="images/projects/thumbnails/thumb_kokedama1.jpg" 
+                                    alt="Kokedama Materials" 
+                                    class="w-full h-48 object-cover rounded-lg shadow-md hover:opacity-90 transition-opacity">
+                            </a>
+                            <a href="images/projects/kokedama2.jpg" class="block w-full">
+                                <img src="images/projects/thumbnails/thumb_kokedama2.jpg" 
+                                    alt="Finished Kokedama" 
+                                    class="w-full h-48 object-cover rounded-lg shadow-md hover:opacity-90 transition-opacity">
+                            </a>
+                        </div>
+                        <p class="mt-4">
+                            I'm terrible with plants. Kokedama seemed like they would be low maintenance/fairly idiot proof, so I had high hopes for this workshop being offered 
+                            by the <a href="https://uncommonplantguy.com/" class="link">Uncommon Plant Guy</a>, and six months later (Jan 2026), my kokedama is still thriving!!! I think this 
+                            is a hoya plant.
+                        </p>
                     </div>
-                    I'm obsessed with this bag. I made it in my third (!) <a href="https://www.chicagoschoolofshoemaking.com/">Chicago School of Shoemaking and Leather Arts</a> 
-                    class this year. This took about ~12 hours? As usual, I was very stressed about the choices (I <i>agonized</i> over the red thread) but I'm super happy with it.
-                    If you look at it closely, you can tell that I don't know how to sew straight, but from a reasonable distance, it looks clean and expensive. Good enough for me. 
-                    I think, at this point, I have enough bag construction skills to be able to make something like this on my own, and I'm excited to try.
-                    <br><br>
-                    <b>December</b>
-                    <br>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 mb-4">
-                    <a href="images/projects/clay_chicken.jpg" class="block w-fit">
-                            <img src="images/projects/thumbnails/thumb_clay_chicken.jpg" 
-                            alt="Polymer Clay Chicken" 
-                            class="w-full max-w-md rounded-lg shadow-md hover:opacity-90 transition-opacity">
-                        </a>
-                    <a href="images/projects/ornament.jpg" class="block w-fit">
-                            <img src="images/projects/thumbnails/thumb_ornament.jpg" 
-                            alt="Polymer Clay Bat Signal Ornament" 
-                            class="w-full max-w-md rounded-lg shadow-md hover:opacity-90 transition-opacity">
-                        </a>
+
+                    <!-- October -->
+                    <h2 id="october" class="text-2xl font-bold mt-12 mb-4">October</h2>
+                    <div class="mb-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                            <a href="images/projects/navybag1.jpg" class="block w-full">
+                                <img src="images/projects/thumbnails/thumb_navybag1.jpg" 
+                                    alt="Leather Bag Pieces" 
+                                    class="w-full h-48 object-cover rounded-lg shadow-md hover:opacity-90 transition-opacity">
+                            </a>
+                            <a href="images/projects/navybag2.jpg" class="block w-full">
+                                <img src="images/projects/thumbnails/thumb_navybag2.jpg" 
+                                    alt="Finished Leather Bag" 
+                                    class="w-full h-48 object-cover rounded-lg shadow-md hover:opacity-90 transition-opacity">
+                            </a>
+                        </div>
+                        <p class="mt-4">
+                            I'm obsessed with this bag. I made it in my third(!) <a href="https://www.chicagoschoolofshoemaking.com/" class="link">Chicago School of Shoemaking and Leather Arts</a> 
+                            class this year. This took about ~12 hours? As usual, I was very stressed about the choices (I <i>agonized</i> over the red thread) but I'm super happy with it.
+                            If you look at it closely, you can tell that I don't know how to sew straight, but from a reasonable distance, it looks clean and expensive. Good enough for me. 
+                            I think, at this point, I have enough bag construction skills to be able to make something like this on my own, and I'm excited to try.
+                        </p>
                     </div>
-                    Polymer clay is a steadfast part of my crafting repertoire, so I didn't think to take pictures of all the things I've made this year. Most of them were 
-                    towards the end of the year. I made some Koroks (a usual favorite), the chicken is a <a href="https://www.zeldadungeon.net/wiki/index.php?title=Cucco">Cucco attempt</a>, 
-                    and a Bat Signal ornament (for the annual celebration of Batsmas). I regret not getting a picture of the mini gnome I made for a friend's gnome-themed birthday,
-                    but maybe I can eventually get one in its new home.
-                    <br><br>
-                    <b>Various</b>
-                    <br>
-                    <a href="images/projects/minidrawings.jpg" class="block w-fit">
-                        <img src="images/projects/thumbnails/thumb_minidrawings.jpg" 
-                        alt="Many Mini Drawings" 
-                        class="w-full max-w-md rounded-lg shadow-md hover:opacity-90 transition-opacity">
-                    </a>
-                    <br>
-                    I worked on these throughout the year. They're more or less lined up from old to new, so the Zelda themes at the top are the earlier ones and the Pikachu at the bottom was from a few days ago. Honestly, the older ones seem better. 
-                    <br><br>
-                    During my last trip to Japan in November 2023, I let myself purchase a starter pack of <a href="https://copicmarkers.com/collections/ciao-marker-sets">Copic Ciao markers</a>. It felt so impractical, because when do I ever draw or color?! 
-                    so I decided to make small drawings to have something to do with this extra thick paper I had, and a way to practice with my new markers. I figured out later that people who do amazing things with Copics tend to use a million shades (instead of blending the ones they have), 
-                    so it's hard to use a limited palette, but this is not an acceptable reason to buy like 40 more Copics, so here's my small collection of mediocre-ly colored drawings.
-                    <br><br>
-                    I want to get back into doodling! and I think the only way to do it is to just keep drawing, even if you're not thrilled with your drawings. I was never the greatest at drawing,
-                    but even as a high schooler I never ran out of things I wanted to draw, and I feel this lack of imagination acutely now.
-                </p>
+
+                    <!-- December -->
+                    <h2 id="december" class="text-2xl font-bold mt-12 mb-4">December</h2>
+                    <div class="mb-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                            <a href="images/projects/clay_chicken.jpg" class="block w-full">
+                                <img src="images/projects/thumbnails/thumb_clay_chicken.jpg" 
+                                    alt="Polymer Clay Chicken" 
+                                    class="w-full h-48 object-cover rounded-lg shadow-md hover:opacity-90 transition-opacity">
+                            </a>
+                            <a href="images/projects/ornament.jpg" class="block w-full">
+                                <img src="images/projects/thumbnails/thumb_ornament.jpg" 
+                                    alt="Bat Signal Ornament" 
+                                    class="w-full h-48 object-cover rounded-lg shadow-md hover:opacity-90 transition-opacity">
+                            </a>
+                        </div>
+                        <p class="mt-4">
+                            Polymer clay is a steadfast part of my crafting repertoire, so I didn't think to take pictures of all the things I've made this year. Most of them were 
+                            towards the end of the year. I made some Koroks (a usual favorite), the chicken is a <a href="https://www.zeldadungeon.net/wiki/index.php?title=Cucco" class="link">Cucco attempt</a>, 
+                            and a Bat Signal ornament (for the annual celebration of Batsmas). I regret not getting a picture of the mini gnome I made for a friend's gnome-themed birthday,
+                            but maybe I can eventually get one in its new home.
+                        </p>
+                    </div>
+
+                    <!-- Various - Mini Drawings -->
+                    <h2 class="text-2xl font-bold mt-12 mb-4">Various</h2>
+                    <div class="mb-6">
+                        <a href="images/projects/minidrawings.jpg" class="block w-fit">
+                            <img src="images/projects/thumbnails/thumb_minidrawings.jpg" 
+                                alt="Mini Drawings Collection" 
+                                class="w-full max-w-md rounded-lg shadow-md hover:opacity-90 transition-opacity">
+                        </a>
+                        <p class="mt-4">
+                            I worked on these throughout the year. They're more or less lined up from old to new, so the Zelda themes at the top are the earlier ones and the Pikachu at the bottom was from a few days ago. Honestly, the older ones seem better. 
+                            <br><br>
+                            During my last trip to Japan in November 2023, I let myself purchase a starter pack of <a href="https://copicmarkers.com/collections/ciao-marker-sets" class="link">Copic Ciao markers</a>. It felt so impractical, because when do I ever draw or color?! 
+                            so I decided to make small drawings to have something to do with this extra thick paper I had, and a way to practice with my new markers. I figured out later that people who do amazing things with Copics tend to use a million shades (instead of blending the ones they have), 
+                            so it's hard to use a limited palette, but this is not an acceptable reason to buy like 40 more Copics, so here's my small collection of mediocre-ly colored drawings.
+                            <br><br>
+                            I want to get back into doodling! and I think the only way to do it is to just keep drawing, even if you're not thrilled with your drawings. I was never the greatest at drawing, but even as a high schooler I never ran out of things I wanted to draw, and I feel this lack of imagination acutely now.
+                        </p>
+                    </div>
+
+                    <!-- On deck for 2026 -->
+                    <h2 class="text-2xl font-bold mt-12 mb-4">On deck</h2>
+                    <div class="mb-6">
+                        <p class="mt-4">
+                            Hello
+                        </p>
+                    </div>
                 </article>
+            </div>
+            
+            <div class="lg:w-48 flex-shrink-0">
+                <nav class="sticky top-24 flex flex-col space-y-2">
+                    <a href="#january" class="link text-sm">January</a>
+                    <a href="#february" class="link text-sm">February</a>
+                    <a href="#march" class="link text-sm">March</a>
+                    <a href="#april" class="link text-sm">April</a>
+                    <a href="#may" class="link text-sm">May</a>
+                    <a href="#july" class="link text-sm">July</a>
+                    <a href="#october" class="link text-sm">October</a>
+                    <a href="#december" class="link text-sm">December</a>
+                    <a href="#various" class="link text-sm">Various</a>
+                </nav>
             </div>
         </div>
     </div>
 
     <!-- Dark Mode Toggle Button -->
-    <button onclick="document.documentElement.classList.toggle('dark')" 
-            class="fixed bottom-4 right-4 p-3 rounded-full bg-white dark:bg-gray-800 shadow-lg hover:scale-110 transition-transform">
+    <button onclick="document.documentElement.classList.toggle('dark')" class="fixed bottom-4 right-4 p-3 rounded-full bg-white dark:bg-gray-800 shadow-lg hover:scale-110 transition-transform">
         <svg class="w-6 h-6 text-gray-800 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
         </svg>
