@@ -28,7 +28,7 @@
         }
 
         .header {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)), url('images/nobori-bg.jpeg');
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('images/nobori-bg.jpeg');
             background-size: cover;
             background-position: center;
             color: white;
@@ -48,7 +48,7 @@
 
         .header p {
             font-size: 1.1em;
-            opacity: 0.75;
+            opacity: 0.55;
             color: #f0f0f0;
             font-weight: 500;
         }
@@ -85,7 +85,6 @@
         .leaderboard-item {
             border-radius: 12px;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 3px solid transparent;
             position: relative;
             overflow: hidden;
             cursor: pointer;
@@ -93,21 +92,21 @@
         }
 
         .leaderboard-item:nth-child(1) {
-            background: linear-gradient(135deg, #FFD700, #FFA500);
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.9), rgba(255, 165, 0, 0.6));
             border-color: #FFD700;
-            opacity: 0.8;
+            opacity: 0.5;
         }
 
         .leaderboard-item:nth-child(2) {
-            background: linear-gradient(135deg, #C0C0C0, #A9A9A9);
+            background: linear-gradient(135deg, rgba(192, 192, 192, 0.9), rgba(169, 169, 169, 0.6));
             border-color: #C0C0C0;
-            opacity: 0.8;
+            opacity: 0.5;
         }
 
         .leaderboard-item:nth-child(3) {
-            background: linear-gradient(135deg, #CD7F32, #B87333);
+            background: linear-gradient(135deg, rgba(205, 127, 50, 0.9), rgba(184, 115, 51, 0.6));
             border-color: #CD7F32;
-            opacity: 0.8;
+            opacity: 0.5;
         }
 
         .leaderboard-item:hover {
@@ -314,7 +313,7 @@
         /* Daily scores section */
         .daily-scores {
             margin-top: 15px;
-            padding-top: 15px;
+            padding: 15px;
             border-top: 2px solid rgba(255, 255, 255, 0.3);
             display: none;
         }
@@ -496,12 +495,11 @@
     </div>
 
     <script>
-        // Player avatars - different for the leader
+        // Player avatars
         const playerAvatars = {
-            leader: 'https://picsum.photos/seed/sumo-champion/60/60.jpg',
-            player1: 'https://picsum.photos/seed/sumo-r1/60/60.jpg',
-            player2: 'https://picsum.photos/seed/sumo-r2/60/60.jpg',
-            player3: 'https://picsum.photos/seed/sumo-r3/60/60.jpg'
+            player1: 'images/sumo/lisa.png',
+            player2: 'images/sumo/mark.png',
+            player3: 'images/sumo/tae.png'
         };
 
         // Predefined players with their picks and scores
@@ -552,7 +550,7 @@
             
             leaderboardContent.innerHTML = sortedPlayers.map((player, index) => {
                 const rankClass = index === 0 ? 'rank-1' : index === 1 ? 'rank-2' : index === 2 ? 'rank-3' : '';
-                const avatarUrl = index === 0 ? playerAvatars.leader : playerAvatars[`player${player.id}`];
+                const avatarUrl = playerAvatars[`player${player.id}`];
                 const crownIcon = index === 0 ? '<span class="crown">👑</span>' : '';
                 
                 return `
