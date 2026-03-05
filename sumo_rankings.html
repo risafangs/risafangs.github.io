@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fantasy Sumo Leaderboard</title>
+    <title>Fantasy Sumo Rankings</title>
     <style>
         * {
             margin: 0;
@@ -43,387 +43,285 @@
             padding: 30px;
         }
 
-        .tabs {
-            display: flex;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #f0f0f0;
-        }
-
-        .tab {
-            flex: 1;
-            padding: 15px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 600;
-            color: #666;
-            transition: all 0.3s;
-        }
-
-        .tab.active {
-            color: #ff6b6b;
-            border-bottom: 3px solid #ff6b6b;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .score-input-section {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-        }
-
-        .score-inputs {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .day-selector {
-            margin-bottom: 20px;
-        }
-
-        .day-selector select {
-            padding: 10px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 16px;
-        }
-
         .leaderboard {
             display: grid;
-            gap: 15px;
+            gap: 20px;
         }
 
         .leaderboard-item {
             display: flex;
             align-items: center;
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            transition: all 0.3s;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 25px;
+            border-radius: 15px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .leaderboard-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .leaderboard-item:hover::before {
+            left: 100%;
         }
 
         .leaderboard-item:hover {
-            transform: translateX(5px);
-            background: #e9ecef;
+            transform: translateX(15px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-color: #ff6b6b;
+        }
+
+        .leaderboard-item:nth-child(1) {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            border: 3px solid #ffd700;
+        }
+
+        .leaderboard-item:nth-child(2) {
+            background: linear-gradient(135deg, #c0c0c0, #e8e8e8);
+            border: 3px solid #c0c0c0;
+        }
+
+        .leaderboard-item:nth-child(3) {
+            background: linear-gradient(135deg, #cd7f32, #daa520);
+            border: 3px solid #cd7f32;
         }
 
         .rank {
-            font-size: 24px;
+            font-size: 36px;
             font-weight: bold;
-            width: 50px;
+            width: 80px;
             text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        .rank-1 { color: #ffd700; }
-        .rank-2 { color: #c0c0c0; }
-        .rank-3 { color: #cd7f32; }
+        .rank-1 { 
+            color: #fff;
+            background: radial-gradient(circle, #ff6b6b, #ee5a24);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .rank-2 { 
+            color: #fff;
+            background: radial-gradient(circle, #666, #333);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+
+        .rank-3 { 
+            color: #fff;
+            background: radial-gradient(circle, #8b4513, #654321);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.4);
+        }
 
         .player-info {
             flex: 1;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
         }
 
         .player-avatar {
-            width: 60px;
-            height: 60px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid #fff;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-        }
-
-        .player-details h3 {
-            margin-bottom: 5px;
-            color: #333;
-        }
-
-        .player-score {
-            font-size: 24px;
-            font-weight: bold;
-            color: #ff6b6b;
-        }
-
-        .btn {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 600;
+            border: 4px solid #fff;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
             transition: all 0.3s;
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        .leaderboard-item:hover .player-avatar {
+            transform: scale(1.1) rotate(5deg);
         }
 
-        .player-list {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 30px;
+        .player-details h3 {
+            margin-bottom: 8px;
+            color: #333;
+            font-size: 1.4em;
+            font-weight: 700;
         }
 
-        .player-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
-            padding: 15px;
-            background: white;
-            border-radius: 8px;
-            border-left: 4px solid #ff6b6b;
+        .player-picks {
+            color: #666;
+            font-size: 0.9em;
+            opacity: 0.8;
         }
 
-        .player-item:last-child {
-            margin-bottom: 0;
+        .player-score {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ff6b6b;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            min-width: 80px;
+            text-align: center;
         }
 
-        .notification {
-            position: fixed;
-            top: 20px;
+        .crown {
+            position: absolute;
+            top: -10px;
             right: 20px;
-            background: #28a745;
-            color: white;
-            padding: 15px 25px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            transform: translateX(400px);
-            transition: transform 0.3s;
-            z-index: 1000;
+            font-size: 2em;
+            animation: bounce 2s infinite;
         }
 
-        .notification.show {
-            transform: translateX(0);
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .leaderboard-item:nth-child(1) {
+            animation: slideIn 0.8s ease-out 0.2s both;
+        }
+
+        .leaderboard-item:nth-child(2) {
+            animation: slideIn 0.8s ease-out 0.4s both;
+        }
+
+        .leaderboard-item:nth-child(3) {
+            animation: slideIn 0.8s ease-out 0.6s both;
+        }
+
+        .header {
+            animation: fadeIn 1s ease-out;
+        }
+
+        .content {
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        .trophy-icon {
+            font-size: 1.2em;
+            margin-right: 10px;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🏆 Sports Bracket Tracker</h1>
-            <p>Track your bracket competition</p>
+            <h1><span class="trophy-icon">🏆</span>Fantasy Sumo - March Basho</h1>
+            <p>Live Leaderboard</p>
         </div>
         
         <div class="content">
-            <div class="tabs">
-                <button class="tab active" onclick="showTab('scores')">Add Scores</button>
-                <button class="tab" onclick="showTab('leaderboard')">Leaderboard</button>
-            </div>
-
-            <!-- Scores Tab -->
-            <div id="scores" class="tab-content active">
-                <div class="player-list">
-                    <h3>Players</h3>
-                    <div id="players-display">
-                        <!-- Players will be populated by JavaScript -->
-                    </div>
-                </div>
-                
-                <div class="score-input-section">
-                    <h3>Add Daily Scores</h3>
-                    <div class="day-selector">
-                        <label for="day-select">Select Day: </label>
-                        <select id="day-select">
-                            <option value="1">Day 1</option>
-                            <option value="2">Day 2</option>
-                            <option value="3">Day 3</option>
-                            <option value="4">Day 4</option>
-                            <option value="5">Day 5</option>
-                            <option value="6">Day 6</option>
-                            <option value="7">Day 7</option>
-                            <option value="8">Day 8</option>
-                            <option value="9">Day 9</option>
-                            <option value="10">Day 10</option>
-                            <option value="11">Day 11</option>
-                            <option value="12">Day 12</option>
-                            <option value="13">Day 13</option>
-                            <option value="14">Day 14</option>
-                            <option value="15">Day 15</option>
-                        </select>
-                    </div>
-                    
-                    <div class="score-inputs">
-                        <div>
-                            <h4 id="score-player1-name">Player 1</h4>
-                            <input type="number" class="pick-input" id="score-player1" placeholder="Score" min="0">
-                        </div>
-                        <div>
-                            <h4 id="score-player2-name">Player 2</h4>
-                            <input type="number" class="pick-input" id="score-player2" placeholder="Score" min="0">
-                        </div>
-                        <div>
-                            <h4 id="score-player3-name">Player 3</h4>
-                            <input type="number" class="pick-input" id="score-player3" placeholder="Score" min="0">
-                        </div>
-                    </div>
-                    
-                    <button class="btn" onclick="addScores()">Add Scores</button>
-                </div>
-            </div>
-
-            <!-- Leaderboard Tab -->
-            <div id="leaderboard" class="tab-content">
-                <h3>🏆 Current Leaderboard</h3>
-                <div id="leaderboard-content" class="leaderboard">
-                    <!-- Leaderboard will be populated by JavaScript -->
-                </div>
+            <div id="leaderboard-content" class="leaderboard">
+                <!-- Leaderboard will be populated by JavaScript -->
             </div>
         </div>
     </div>
 
-    <div id="notification" class="notification">
-        Data saved successfully!
-    </div>
-
     <script>
-        // Player avatars based on who's in the lead
+        // Player avatars - different for the leader
         const playerAvatars = {
-            default: 'https://picsum.photos/seed/player/60/60.jpg',
-            leader1: 'https://picsum.photos/seed/crown1/60/60.jpg',
-            leader2: 'https://picsum.photos/seed/crown2/60/60.jpg',
-            leader3: 'https://picsum.photos/seed/crown3/60/60.jpg'
+            leader: 'https://picsum.photos/seed/champion-crown/80/80.jpg',
+            player1: 'https://picsum.photos/seed/player1/80/80.jpg',
+            player2: 'https://picsum.photos/seed/player2/80/80.jpg',
+            player3: 'https://picsum.photos/seed/player3/80/80.jpg'
         };
 
-        // Initialize the app with known players and picks
-        function initializeApp() {
-            // Predefined players and their picks
-            const players = [
-                {
-                    id: 1,
-                    name: "Lisa",
-                    picks: ["Team A", "Team C", "Team B", "Team D"]
-                },
-                {
-                    id: 2,
-                    name: "Tae",
-                    picks: ["Team B", "Team A", "Team D", "Team C"]
-                },
-                {
-                    id: 3,
-                    name: "Mark",
-                    picks: ["Team C", "Team B", "Team A", "Team D"]
-                }
-            ];
-
-            const appData = {
-                players: players,
-                scores: {}
-            };
-
-            // Check if data already exists, if not initialize it
-            const existingData = localStorage.getItem('bracketData');
-            if (!existingData) {
-                localStorage.setItem('bracketData', JSON.stringify(appData));
+        // Predefined players with their picks and scores
+        const players = [
+            {
+                id: 1,
+                name: "Lisa",
+                picks: ["Onosato", "Team C", "Team B", "Team D"],
+                totalScore: 45
+            },
+            {
+                id: 2,
+                name: "Mark", 
+                picks: ["Hoshoryu", "Team A", "Team D", "Team C"],
+                totalScore: 38
+            },
+            {
+                id: 3,
+                name: "Tae",
+                picks: ["Onosato", "Team B", "Team A", "Team D"], 
+                totalScore: 42
             }
+        ];
 
-            loadData();
-            updatePlayerDisplay();
-            updatePlayerNames();
+        // Initialize the app
+        function initApp() {
             updateLeaderboard();
-        }
-
-        // Display players and their picks
-        function updatePlayerDisplay() {
-            const appData = JSON.parse(localStorage.getItem('bracketData')) || { players: [] };
-            const playersDisplay = document.getElementById('players-display');
-            
-            playersDisplay.innerHTML = appData.players.map(player => `
-                <div class="player-item">
-                    <div class="player-details">
-                        <h3>${player.name}</h3>
-                        <p>Picks: ${player.picks.join(' → ')}</p>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Add scores for a specific day
-        function addScores() {
-            const day = document.getElementById('day-select').value;
-            const player1Score = parseInt(document.getElementById('score-player1').value) || 0;
-            const player2Score = parseInt(document.getElementById('score-player2').value) || 0;
-            const player3Score = parseInt(document.getElementById('score-player3').value) || 0;
-
-            const appData = JSON.parse(localStorage.getItem('bracketData')) || { players: [], scores: {} };
-            
-            appData.scores[day] = {
-                player1: player1Score,
-                player2: player2Score,
-                player3: player3Score
-            };
-
-            localStorage.setItem('bracketData', JSON.stringify(appData));
-            
-            // Clear score inputs
-            document.getElementById('score-player1').value = '';
-            document.getElementById('score-player2').value = '';
-            document.getElementById('score-player3').value = '';
-            
-            showNotification(`Scores added for Day ${day}!`);
-            updateLeaderboard();
-        }
-
-        // Calculate total scores for each player
-        function calculateTotalScores() {
-            const appData = JSON.parse(localStorage.getItem('bracketData')) || { players: [], scores: {} };
-            
-            return appData.players.map(player => {
-                let totalScore = 0;
-                
-                Object.values(appData.scores).forEach(dayScores => {
-                    if (dayScores[`player${player.id}`] !== undefined) {
-                        totalScore += dayScores[`player${player.id}`];
-                    }
-                });
-                
-                return {
-                    ...player,
-                    totalScore: totalScore
-                };
-            });
         }
 
         // Update leaderboard display
         function updateLeaderboard() {
-            const playersWithScores = calculateTotalScores();
-            playersWithScores.sort((a, b) => b.totalScore - a.totalScore);
+            // Sort players by score (descending)
+            const sortedPlayers = [...players].sort((a, b) => b.totalScore - a.totalScore);
             
             const leaderboardContent = document.getElementById('leaderboard-content');
             
-            if (playersWithScores.length === 0) {
-                leaderboardContent.innerHTML = '<p>No players set up yet.</p>';
-                return;
-            }
-
-            leaderboardContent.innerHTML = playersWithScores.map((player, index) => {
+            leaderboardContent.innerHTML = sortedPlayers.map((player, index) => {
                 const rankClass = index === 0 ? 'rank-1' : index === 1 ? 'rank-2' : index === 2 ? 'rank-3' : '';
-                const avatarUrl = getLeaderboardAvatar(player.id, index);
+                const avatarUrl = index === 0 ? playerAvatars.leader : playerAvatars[`player${player.id}`];
+                const crownIcon = index === 0 ? '<span class="crown">👑</span>' : '';
                 
                 return `
                     <div class="leaderboard-item">
+                        ${crownIcon}
                         <div class="rank ${rankClass}">#${index + 1}</div>
                         <div class="player-info">
                             <img src="${avatarUrl}" alt="${player.name}" class="player-avatar">
                             <div class="player-details">
                                 <h3>${player.name}</h3>
-                                <p>Picks: ${player.picks.join(' → ')}</p>
+                                <div class="player-picks">Picks: ${player.picks.join(' → ')}</div>
                             </div>
                         </div>
                         <div class="player-score">${player.totalScore}</div>
@@ -432,58 +330,8 @@
             }).join('');
         }
 
-        // Get appropriate avatar based on leaderboard position
-        function getLeaderboardAvatar(playerId, position) {
-            if (position === 0) { // Leader
-                return playerAvatars[`leader${playerId}`] || playerAvatars.default;
-            }
-            return playerAvatars.default;
-        }
-
-        // Update player names in score input section
-        function updatePlayerNames() {
-            const appData = JSON.parse(localStorage.getItem('bracketData')) || { players: [] };
-            
-            appData.players.forEach(player => {
-                const nameElement = document.getElementById(`score-player${player.id}-name`);
-                if (nameElement) {
-                    nameElement.textContent = player.name;
-                }
-            });
-        }
-
-        // Show notification
-        function showNotification(message) {
-            const notification = document.getElementById('notification');
-            notification.textContent = message;
-            notification.classList.add('show');
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
-        }
-
-        // Tab switching functionality
-        function showTab(tabName) {
-            // Hide all tab contents
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.remove('active');
-            });
-            
-            // Remove active class from all tabs
-            document.querySelectorAll('.tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            // Show selected tab content
-            document.getElementById(tabName).classList.add('active');
-            
-            // Add active class to clicked tab
-            event.target.classList.add('active');
-        }
-
         // Load data on page load
-        window.addEventListener('load', initializeApp);
+        window.addEventListener('load', initApp);
     </script>
 </body>
 </html>
