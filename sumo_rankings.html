@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fantasy Sumo Rankings</title>
+    <title>Fantasy Sumo - Haru Basho</title>
     <style>
         * {
             margin: 0;
@@ -13,9 +13,9 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #90EE90 0%, #228B22 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 10px;
         }
 
         .container {
@@ -23,83 +23,110 @@
             margin: 0 auto;
             background: white;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             overflow: hidden;
         }
 
         .header {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            background: linear-gradient(135deg, #1e3a8a, #1e40af);
             color: white;
-            padding: 30px;
+            padding: 25px 20px;
             text-align: center;
+            position: relative;
         }
 
         .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
         }
 
         .content {
-            padding: 30px;
+            padding: 20px;
         }
 
         .leaderboard {
             display: grid;
-            gap: 20px;
+            gap: 15px;
         }
 
         .leaderboard-item {
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            padding: 25px;
-            border-radius: 15px;
+            background-image: url('images/sumo_dojo.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 12px;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 3px solid transparent;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .leaderboard-item::before {
             content: '';
             position: absolute;
             top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(2px);
+            z-index: 1;
+        }
+
+        .leaderboard-item.expanded::before {
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .leaderboard-content {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+        }
+
+        .leaderboard-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
             transition: left 0.5s;
+            z-index: 3;
         }
 
-        .leaderboard-item:hover::before {
+        .leaderboard-item:hover::after {
             left: 100%;
         }
 
         .leaderboard-item:hover {
-            transform: translateX(15px) scale(1.02);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
             border-color: #ff6b6b;
         }
 
         .leaderboard-item:nth-child(1) {
-            background: linear-gradient(135deg, #ffd700, #ffed4e);
-            border: 3px solid #ffd700;
+            border-color: #ffd700;
         }
 
         .leaderboard-item:nth-child(2) {
-            background: linear-gradient(135deg, #c0c0c0, #e8e8e8);
-            border: 3px solid #c0c0c0;
+            border-color: #c0c0c0;
         }
 
         .leaderboard-item:nth-child(3) {
-            background: linear-gradient(135deg, #cd7f32, #daa520);
-            border: 3px solid #cd7f32;
+            border-color: #cd7f32;
         }
 
         .rank {
-            font-size: 36px;
+            font-size: 28px;
             font-weight: bold;
-            width: 80px;
+            width: 60px;
             text-align: center;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
@@ -108,8 +135,8 @@
             color: #fff;
             background: radial-gradient(circle, #ff6b6b, #ee5a24);
             border-radius: 50%;
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -120,8 +147,8 @@
             color: #fff;
             background: radial-gradient(circle, #666, #333);
             border-radius: 50%;
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -132,8 +159,8 @@
             color: #fff;
             background: radial-gradient(circle, #8b4513, #654321);
             border-radius: 50%;
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -144,15 +171,15 @@
             flex: 1;
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
         }
 
         .player-avatar {
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid #fff;
+            border: 3px solid #fff;
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
             transition: all 0.3s;
         }
@@ -162,33 +189,34 @@
         }
 
         .player-details h3 {
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             color: #333;
-            font-size: 1.4em;
+            font-size: 1.2em;
             font-weight: 700;
         }
 
         .player-picks {
             color: #666;
-            font-size: 0.9em;
+            font-size: 0.85em;
             opacity: 0.8;
         }
 
         .player-score {
-            font-size: 32px;
+            font-size: 24px;
             font-weight: bold;
             color: #ff6b6b;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-            min-width: 80px;
+            min-width: 60px;
             text-align: center;
         }
 
         .crown {
             position: absolute;
-            top: -10px;
-            right: 20px;
-            font-size: 2em;
+            top: -8px;
+            right: 15px;
+            font-size: 1.6em;
             animation: bounce 2s infinite;
+            z-index: 4;
         }
 
         @keyframes bounce {
@@ -196,10 +224,10 @@
                 transform: translateY(0);
             }
             40% {
-                transform: translateY(-10px);
+                transform: translateY(-8px);
             }
             60% {
-                transform: translateY(-5px);
+                transform: translateY(-4px);
             }
         }
 
@@ -217,7 +245,7 @@
         @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -247,15 +275,173 @@
 
         .trophy-icon {
             font-size: 1.2em;
-            margin-right: 10px;
+            margin-right: 8px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 5px;
+            }
+
+            .container {
+                border-radius: 10px;
+            }
+
+            .header {
+                padding: 20px 15px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .header p {
+                font-size: 1em;
+            }
+
+            .content {
+                padding: 15px;
+            }
+
+            .player-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .player-details h3 {
+                font-size: 1.1em;
+            }
+
+            .player-picks {
+                font-size: 0.8em;
+            }
+
+            .player-score {
+                font-size: 20px;
+                align-self: flex-end;
+            }
+
+            .player-avatar {
+                width: 50px;
+                height: 50px;
+            }
+
+            .rank {
+                width: 45px;
+                font-size: 24px;
+            }
+
+            .rank-1, .rank-2, .rank-3 {
+                width: 45px;
+                height: 45px;
+            }
+
+            .leaderboard-content {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+
+            .player-details h3 {
+                font-size: 1em;
+            }
+
+            .player-picks {
+                font-size: 0.75em;
+            }
+
+            .player-score {
+                font-size: 18px;
+            }
+
+            .player-avatar {
+                width: 40px;
+                height: 40px;
+            }
+
+            .rank {
+                width: 40px;
+                font-size: 20px;
+            }
+
+            .rank-1, .rank-2, .rank-3 {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        /* Daily scores section */
+        .daily-scores {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid #e0e0e0;
+            display: none;
+        }
+
+        .leaderboard-item.expanded .daily-scores {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .daily-scores h4 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .daily-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+            gap: 8px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .daily-score {
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: 6px;
+            padding: 8px 4px;
+            text-align: center;
+            font-size: 0.85em;
+        }
+
+        .daily-score .day {
+            font-weight: bold;
+            color: #ff6b6b;
+        }
+
+        .daily-score .score {
+            display: block;
+            font-size: 0.9em;
+            color: #333;
+        }
+
+        .expand-indicator {
+            position: absolute;
+            bottom: 10px;
+            right: 15px;
+            color: #666;
+            font-size: 0.9em;
+            z-index: 4;
+        }
+
+        .leaderboard-item.expanded .expand-indicator {
+            color: #ff6b6b;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1><span class="trophy-icon">🏆</span>Fantasy Sumo - March Basho</h1>
-            <p>Live Leaderboard</p>
+            <h1><span class="trophy-icon">🏆</span>Fantasy Sumo - Haru Basho</h1>
+            <p>Leaderboard - As of Day 0</p>
         </div>
         
         <div class="content">
@@ -268,10 +454,10 @@
     <script>
         // Player avatars - different for the leader
         const playerAvatars = {
-            leader: 'https://picsum.photos/seed/champion-crown/80/80.jpg',
-            player1: 'https://picsum.photos/seed/player1/80/80.jpg',
-            player2: 'https://picsum.photos/seed/player2/80/80.jpg',
-            player3: 'https://picsum.photos/seed/player3/80/80.jpg'
+            leader: 'https://picsum.photos/seed/sumo-champion/60/60.jpg',
+            player1: 'https://picsum.photos/seed/sumo-r1/60/60.jpg',
+            player2: 'https://picsum.photos/seed/sumo-r2/60/60.jpg',
+            player3: 'https://picsum.photos/seed/sumo-r3/60/60.jpg'
         };
 
         // Predefined players with their picks and scores
@@ -279,20 +465,32 @@
             {
                 id: 1,
                 name: "Lisa",
-                picks: ["Onosato", "Team C", "Team B", "Team D"],
-                totalScore: 45
+                picks: ["Hakuhō", "Kisenosato", "Kakuryū", "Terunofuji"],
+                totalScore: 45,
+                dailyScores: {
+                    1: 3, 2: 2, 3: 4, 4: 1, 5: 3, 6: 2, 7: 4, 8: 3, 9: 2, 10: 1,
+                    11: 3, 12: 2, 13: 4, 14: 1, 15: 3
+                }
             },
             {
                 id: 2,
                 name: "Mark", 
-                picks: ["Hoshoryu", "Team A", "Team D", "Team C"],
-                totalScore: 38
+                picks: ["Kakuryū", "Hakuhō", "Terunofuji", "Kisenosato"],
+                totalScore: 38,
+                dailyScores: {
+                    1: 2, 2: 3, 3: 1, 4: 4, 5: 2, 6: 3, 7: 1, 8: 2, 9: 4, 10: 3,
+                    11: 2, 12: 1, 13: 3, 14: 2, 15: 4
+                }
             },
             {
                 id: 3,
                 name: "Tae",
-                picks: ["Onosato", "Team B", "Team A", "Team D"], 
-                totalScore: 42
+                picks: ["Terunofuji", "Kisenosato", "Hakuhō", "Kakuryū"], 
+                totalScore: 42,
+                dailyScores: {
+                    1: 4, 2: 1, 3: 3, 4: 2, 5: 4, 6: 1, 7: 3, 8: 4, 9: 1, 10: 2,
+                    11: 4, 12: 3, 13: 1, 14: 4, 15: 2
+                }
             }
         ];
 
@@ -314,20 +512,49 @@
                 const crownIcon = index === 0 ? '<span class="crown">👑</span>' : '';
                 
                 return `
-                    <div class="leaderboard-item">
+                    <div class="leaderboard-item" onclick="togglePlayerDetails(${player.id})">
                         ${crownIcon}
-                        <div class="rank ${rankClass}">#${index + 1}</div>
-                        <div class="player-info">
-                            <img src="${avatarUrl}" alt="${player.name}" class="player-avatar">
-                            <div class="player-details">
-                                <h3>${player.name}</h3>
-                                <div class="player-picks">Picks: ${player.picks.join(' → ')}</div>
+                        <div class="leaderboard-content">
+                            <div class="player-info">
+                                <img src="${avatarUrl}" alt="${player.name}" class="player-avatar">
+                                <div class="player-details">
+                                    <h3>${player.name}</h3>
+                                    <div class="player-picks">Rikishi: ${player.picks.join(' → ')}</div>
+                                </div>
+                            </div>
+                            <div class="player-score">${player.totalScore}</div>
+                            <div class="expand-indicator">Click to expand</div>
+                        </div>
+                        <div class="daily-scores" id="daily-${player.id}">
+                            <h4>Daily Scores</h4>
+                            <div class="daily-grid">
+                                ${Object.entries(player.dailyScores).map(([day, score]) => `
+                                    <div class="daily-score">
+                                        <span class="day">Day ${day}</span>
+                                        <span class="score">${score}</span>
+                                    </div>
+                                `).join('')}
                             </div>
                         </div>
-                        <div class="player-score">${player.totalScore}</div>
                     </div>
                 `;
             }).join('');
+        }
+
+        // Toggle player details (show/hide daily scores)
+        function togglePlayerDetails(playerId) {
+            const playerElement = document.querySelector(`#daily-${playerId}`).parentElement;
+            const isExpanded = playerElement.classList.contains('expanded');
+            
+            // Close all expanded items
+            document.querySelectorAll('.leaderboard-item').forEach(item => {
+                item.classList.remove('expanded');
+            });
+            
+            // Toggle the clicked item
+            if (!isExpanded) {
+                playerElement.classList.add('expanded');
+            }
         }
 
         // Load data on page load
